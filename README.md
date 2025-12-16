@@ -1,166 +1,182 @@
-# 🚀 Growth Swift - Micro Tools Scraper
+# 🚀 Growth Swift – Micro Tools Scraper
 
-**Growth Swift** is a comprehensive web intelligence dashboard built with Python and Flask. It provides a suite of automated tools to scrape metadata, extract contact details, and analyze social media conversations using **Playwright** and **BeautifulSoup**.
+**Growth Swift** is a web intelligence dashboard built with **Python** and **Flask**. It provides a suite of automated tools to scrape website metadata, extract contact details, and analyze social media conversations using **Playwright** and **BeautifulSoup**.
 
 ![Project Status](https://img.shields.io/badge/Status-Active-success)
-![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Python Version](https://img.shields.io/badge/Python-3.11%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
 ## ✨ Features
 
-### 1. 📊 Metadata Scraper
-* Extracts **SEO tags** (Title, Description, Canonical).
-* Retrieves **OG (Open Graph)** social tags.
-* Analyzes **Keyword Density** and fetches headings (H1-H3).
-* Performs **WHOIS lookups** for domain age and ownership.
+### 📊 Metadata Scraper
 
-### 2. 📧 Email & Contact Scraper
-* Crawls websites to find **Email Addresses** and **Phone Numbers**.
-* Uses **recursive crawling** (up to 5 pages deep) to find team/contact pages.
-* Exports leads directly to CSV.
+* Extracts **SEO tags** (Title, Meta Description, Canonical).
+* Retrieves **Open Graph (OG)** social tags.
+* Analyzes **keyword density** and extracts headings (H1–H3).
+* Performs **WHOIS lookups** to determine domain age and ownership.
 
-### 3. 💬 Conversation Scraper
-* Designed for Reddit threads and forum discussions.
-* Extracts user comments, authors, timestamps, and upvotes.
-* Includes **"Sort By"** and **"Limit"** filters.
-* Powered by **Playwright** to handle dynamic JavaScript loading.
+### 📧 Email & Contact Scraper
+
+* Crawls websites to find **email addresses** and **phone numbers**.
+* Uses **recursive crawling** (configurable depth) to discover contact/team pages.
+* Exports extracted leads to **CSV**.
+
+### 💬 Conversation Scraper
+
+* Designed for **Reddit threads** and forum discussions.
+* Extracts comments, authors, timestamps, and upvotes.
+* Supports **Sort By** (New / Top) and **Limit** filters.
+* Powered by **Playwright** to handle dynamic JavaScript content.
 
 ---
 
 ## 📂 Project Structure
 
-Ensure your folder looks exactly like this for the tool to work:
+Ensure your folder structure matches the following:
 
 ```text
 GrowthSwiftScraper/
 │
-├── app.py                      # Main Flask Server (Entry Point)
-├── requirements.txt            # Python Dependencies
-├── README.md                   # Documentation
+├── app.py                      # Main Flask server (entry point)
+├── requirements.txt            # Python dependencies
+├── README.md                   # Project documentation
 │
 ├── static/
-│   └── logo.png                # Your branding logo
+│   └── logo.png                # Branding assets
 │
-├── templates/                  # Frontend UI
-│   ├── UI.html                 # Main Dashboard
-│   ├── metadata.html           # Metadata Tool Interface
-│   ├── pagecontent.html        # Email/Contact Tool Interface
-│   └── conversation.html       # Conversation Tool Interface
+├── templates/                  # Frontend templates
+│   ├── UI.html                 # Main dashboard
+│   ├── metadata.html           # Metadata tool UI
+│   ├── pagecontent.html        # Email/Contact tool UI
+│   └── conversation.html       # Conversation tool UI
 │
-└── scraper/                    # Logic Engine
-    ├── __init__.py             # (Empty file to make this a package)
-    ├── fetcher.py              # Hybrid Request/Playwright fetcher
-    ├── parser.py               # BeautifulSoup parser
+└── scraper/                    # Core scraping logic
+    ├── __init__.py             # Marks this directory as a package
+    ├── fetcher.py              # Requests/Playwright fetcher
+    ├── parser.py               # BeautifulSoup parsing helpers
     ├── proxymanager.py         # Proxy rotation logic
     ├── metadata_extractor.py   # SEO data extraction
-    ├── whois_lookup.py         # Domain lookup logic
-    ├── email_crawler.py        # Lead generation logic
+    ├── whois_lookup.py         # Domain WHOIS lookup
+    ├── email_crawler.py        # Email & contact crawling
     └── conversation_logic.py   # Social media scraping logic
+```
 
-🛠️ Installation & Setup
-Follow these steps to set up the project locally.
+---
 
-1. Clone the Repository
-Open your terminal (Command Prompt, PowerShell, or Terminal) and run:
+## 🛠️ Installation & Setup
 
-Bash
+### 1️⃣ Clone the Repository
 
-git clone [https://github.com/your-username/Growth-Swift-Scraper.git](https://github.com/your-username/Growth-Swift-Scraper.git)
+```bash
+git clone https://github.com/your-username/Growth-Swift-Scraper.git
 cd Growth-Swift-Scraper
-2. Create a Virtual Environment
-It is highly recommended to use a virtual environment to avoid conflicts.
+```
 
-For Windows:
+### 2️⃣ Create a Virtual Environment
 
-Bash
+Using a virtual environment is **highly recommended**.
 
+**Windows**
+
+```bash
 python -m venv venv
-.\venv\Scripts\activate
-For Mac / Linux:
+venv\Scripts\activate
+```
 
-Bash
+**macOS / Linux**
 
+```bash
 python3 -m venv venv
 source venv/bin/activate
-3. Install Dependencies
-Install all the required Python libraries listed in requirements.txt:
+```
 
-Bash
+### 3️⃣ Install Dependencies
 
+```bash
 pip install -r requirements.txt
-4. Install Browser Engines
-This project uses Playwright to scrape dynamic websites (like Reddit or Single Page Apps). You must install the necessary browser binaries:
+```
 
-Bash
+### 4️⃣ Install Playwright Browsers
 
+Playwright requires browser binaries for scraping dynamic sites:
+
+```bash
 playwright install
-🚀 How to Run
-Start the Server: Ensure your virtual environment is active (you should see (venv) in your terminal), then run:
+```
 
-Bash
+---
 
+## 🚀 Running the Application
+
+Ensure the virtual environment is active, then start the server:
+
+```bash
 python app.py
-You should see output similar to:
+```
 
-Plaintext
+You should see:
 
-* Running on [http://127.0.0.1:5000/](http://127.0.0.1:5000/) (Press CTRL+C to quit)
-Open the Dashboard: Open your web browser and navigate to: 👉 http://127.0.0.1:5000
+```text
+* Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+```
 
-Stop the Server: To stop the application, go back to your terminal and press CTRL + C.
+Open your browser and visit:
+👉 **[http://127.0.0.1:5000](http://127.0.0.1:5000)**
 
-📝 Usage Guide
-Metadata Tool
-Enter a URL (e.g., https://example.com).
+To stop the server, press **CTRL + C** in the terminal.
 
-(Optional) Enter a keyword to check how often it appears on the page.
+---
 
-Click Analyze.
+## 📝 Usage Guide
 
-Download the report as CSV.
+### 🔍 Metadata Tool
 
-Email Scraper
-Enter a target URL (e.g., https://example.com/contact).
+1. Enter a URL (e.g., `https://example.com`).
+2. (Optional) Provide a keyword to analyze its frequency.
+3. Click **Analyze**.
+4. Download the generated report as **CSV**.
 
-Set Max Pages (keep it low, e.g., 2-3, for faster results).
+### 📧 Email & Contact Scraper
 
-The tool will crawl the links and extract any emails found.
+1. Enter a target URL (e.g., `https://example.com/contact`).
+2. Set **Max Pages** (recommended: 2–3 for faster results).
+3. Start crawling to extract emails and phone numbers.
 
-Conversation Scraper
-Paste a Reddit thread URL (e.g., https://www.reddit.com/r/technology/comments/...).
+### 💬 Conversation Scraper
 
-Select Sort By (New/Top) and Comment Limit.
+1. Paste a Reddit thread URL (e.g., `https://www.reddit.com/r/technology/...`).
+2. Choose **Sort By** (New / Top) and set a **comment limit**.
+3. Click **Extract**. Playwright will fetch the content in headless mode.
 
-Click Extract. The browser will open invisibly (headless mode) to fetch data.
+---
 
-❓ Troubleshooting
-Q: ModuleNotFoundError: No module named 'scraper'
+## ❓ Troubleshooting
 
-Fix: Ensure you are running python app.py from the root folder (GrowthSwiftScraper/), not inside the scraper/ folder. Also, check if scraper/__init__.py exists (it can be empty).
+**Q: `ModuleNotFoundError: No module named 'scraper'`**
+**Fix:** Run `python app.py` from the project root (`GrowthSwiftScraper/`). Ensure `scraper/__init__.py` exists.
 
-Q: Playwright Error: "Executable doesn't exist"
+**Q: Playwright error – "Executable doesn't exist"**
+**Fix:** Run `playwright install` to download browser binaries.
 
-Fix: You forgot to run playwright install. Run that command in your terminal.
+**Q: Connection or blocking errors**
 
-Q: The scraper returns "Connection Error"
+* The site may be blocking bots.
+* Try a different URL.
+* In `scraper/fetcher.py`, set `headless=False` to debug.
+* Check your internet connection or proxy configuration.
 
-Fix: The website might be blocking bots.
+---
 
-Try a different URL.
+## ⚠️ Disclaimer
 
-Open scraper/fetcher.py and ensure headless=True is set (or set to False to see what's happening).
+This project is intended for **educational and research purposes only**.
 
-Check your internet connection.
+* Respect `robots.txt` and website Terms of Service.
+* Do **not** use this tool for spamming or abusive scraping.
+* The authors are **not responsible** for any misuse of this software.
 
-⚠️ Disclaimer
-This tool is for educational and research purposes only.
+---
 
-Respect robots.txt files.
-
-Do not use this tool to spam or violate the Terms of Service of any website.
-
-The developers are not responsible for misuse of this software.
-
-Built with ❤️ by Growth Swift
+Built with ❤️ by **Growth Swift**
