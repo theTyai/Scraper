@@ -1,0 +1,10 @@
+flask
+flask-cors
+requests
+beautifulsoup4
+playwright
+pandas
+python-whois
+fake-useragent
+lxml
+openpyxl
